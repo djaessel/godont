@@ -1,4 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bht7s8su4eybd"]
+[gd_scene load_steps=5 format=3 uid="uid://bht7s8su4eybd"]
+
+[ext_resource type="Script" path="res://Ground.gd" id="1_kq3cc"]
+[ext_resource type="PackedScene" uid="uid://biktulgqrrh4f" path="res://player.tscn" id="2_dsjst"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ylrk6"]
 size = Vector3(60, 2, 60)
@@ -10,6 +13,7 @@ size = Vector3(60, 2, 60)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+script = ExtResource("1_kq3cc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_ylrk6")
@@ -20,6 +24,8 @@ mesh = SubResource("BoxMesh_iuy3a")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.0157946, 0.999875, 0, -0.999875, -0.0157946, 0, 16.4687, 0)
 shadow_enabled = true
+
+[node name="Mob" parent="." instance=ExtResource("2_dsjst")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.848048, 0.529919, 0, -0.529919, 0.848048, 0, 8, 42)
