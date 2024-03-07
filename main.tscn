@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bht7s8su4eybd"]
+[gd_scene load_steps=7 format=3 uid="uid://bht7s8su4eybd"]
 
 [ext_resource type="Script" path="res://Ground.gd" id="1_kq3cc"]
 [ext_resource type="PackedScene" uid="uid://biktulgqrrh4f" path="res://player.tscn" id="2_dsjst"]
+[ext_resource type="Script" path="res://MyCam.gd" id="3_plwtd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ylrk6"]
 size = Vector3(60, 2, 60)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kv8e"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_iuy3a"]
+material = SubResource("StandardMaterial3D_3kv8e")
 size = Vector3(60, 2, 60)
 
 [node name="Main" type="Node3D"]
@@ -27,5 +31,11 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_dsjst")]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="MyCam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.848048, 0.529919, 0, -0.529919, 0.848048, 0, 8, 42)
+script = ExtResource("3_plwtd")
+
+[node name="FinishLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.58344, 0)
+pixel_size = 0.05
+modulate = Color(0.0823529, 0.647059, 0.439216, 1)
