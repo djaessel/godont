@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://biktulgqrrh4f"]
+
+[ext_resource type="Script" path="res://mob1.gd" id="1_gauv2"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_onb68"]
+specular_color = Color(0.521569, 0.47451, 0.733333, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nv53l"]
+albedo_color = Color(0.145098, 0.333333, 0.278431, 1)
+metallic = 0.38
+metallic_specular = 0.8
+metallic_texture = SubResource("CanvasTexture_onb68")
+
+[sub_resource type="BoxMesh" id="BoxMesh_gd38g"]
+material = SubResource("StandardMaterial3D_nv53l")
+size = Vector3(2, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xor2c"]
+size = Vector3(2, 1, 2)
+
+[node name="Mob" type="CharacterBody3D"]
+script = ExtResource("1_gauv2")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_gd38g")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_xor2c")
