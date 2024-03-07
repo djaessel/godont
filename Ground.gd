@@ -1,6 +1,6 @@
 extends StaticBody3D
 
-var finish = false
+@export var finish = false
 var force_finish = false
 var oldest = 0
 var youngest = 1000000

@@ -12,7 +12,6 @@ var target_velocity = Vector3.ZERO
 var maxY = 0.15
 var jumping = false
 var eating = false
-
 var timeout = 50
 
 
@@ -72,17 +71,18 @@ func handleVelocity(direction, delta):
 
 
 func _physics_process(delta):
-	timeout -= 1
-	
-	var direction = makingDecision()
-	
-	handleEating()
-	handleVelocity(direction, delta)
-	
-	var topText = get_node("TopText")
-	topText.text = "Es ist " + str(cycles)
-	
-	# Moving the Character
-	velocity = target_velocity
-	move_and_slide()
+	if not get_parent().finish:
+		timeout -= 1
+		
+		var direction = makingDecision()
+		
+		handleEating()
+		handleVelocity(direction, delta)
+		
+		var topText = get_node("TopText")
+		topText.text = "Es ist " + str(cycles)
+		
+		# Moving the Character
+		velocity = target_velocity
+		move_and_slide()
 
