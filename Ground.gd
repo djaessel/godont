@@ -59,7 +59,8 @@ func checkFallOver():
 func checkFinishConditions():
 	if not finish:
 		var player = get_parent().get_node("Player")
-		if len(getAllMobs()) <= 0:
+		var allMobs = getAllMobs()
+		if len(allMobs) <= 0:
 			print("All enemies are dead!")
 			won = true
 			finish = true
@@ -67,6 +68,13 @@ func checkFinishConditions():
 			print("You are dead!")
 			player.dead = true
 			finish = true
+		else:
+			for m in allMobs:
+				for index in m.get_slide_collision_count():
+					var collision = m.get_slide_collision(index)
+					var body = collision.get_collider()
+					if body.name == "Player":
+						finish = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
