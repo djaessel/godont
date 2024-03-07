@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bht7s8su4eybd"]
+[gd_scene load_steps=8 format=3 uid="uid://bht7s8su4eybd"]
 
 [ext_resource type="Script" path="res://Ground.gd" id="1_kq3cc"]
 [ext_resource type="PackedScene" uid="uid://biktulgqrrh4f" path="res://player.tscn" id="2_dsjst"]
 [ext_resource type="Script" path="res://MyCam.gd" id="3_plwtd"]
+[ext_resource type="AudioStream" uid="uid://ci2pcvnbs75he" path="res://backgroundMusic1.mp3" id="4_qi5pc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ylrk6"]
 size = Vector3(60, 2, 60)
@@ -39,3 +40,7 @@ script = ExtResource("3_plwtd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.58344, 0)
 pixel_size = 0.05
 modulate = Color(0.0823529, 0.647059, 0.439216, 1)
+
+[node name="backgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qi5pc")
+volume_db = 4.917

@@ -1,6 +1,7 @@
 extends StaticBody3D
 
 var finish = false
+var force_finish = false
 var oldest = 0
 var youngest = 1000000
 var won = false
@@ -8,6 +9,8 @@ var runsCount = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_parent().get_node("backgroundMusic").play()
+	
 	var mobx = preload("res://moby.tscn")
 	for n in 10:
 		var m = mobx.instantiate()
@@ -18,11 +21,13 @@ func _ready():
 
 
 func doFinshingCode():
+	if force_finish:
+		get_tree().quit()
+	
 	var groundMesh = get_node("SuperMesh")
 	var player = get_parent().get_node("Player")
 	if player.dead:
 		groundMesh.get_active_material(0).albedo_color = Color(0.9, 0.1, 0.1)
-	#	get_tree().quit()
 	
 	var finishLabel = get_parent().get_node("FinishLabel")
 	if won:
@@ -56,11 +61,26 @@ func checkFallOver():
 			remove_child(m)
 
 
+func checkCollisions():
+	var allMobs = getAllMobs()
+	for m in allMobs:
+		for index in m.get_slide_collision_count():
+			var collision = m.get_slide_collision(index)
+			var body = collision.get_collider()
+			if body.name == "Player":
+				finish = true
+	var player = get_parent().get_node("Player")
+	for index in player.get_slide_collision_count():
+		var collision = player.get_slide_collision(index)
+		var body = collision.get_collider()
+		if "CharacterBody3D" in body.name:
+			finish = true
+
+
 func checkFinishConditions():
 	if not finish:
 		var player = get_parent().get_node("Player")
-		var allMobs = getAllMobs()
-		if len(allMobs) <= 0:
+		if len(getAllMobs()) <= 0:
 			print("All enemies are dead!")
 			won = true
 			finish = true
@@ -69,21 +89,20 @@ func checkFinishConditions():
 			player.dead = true
 			finish = true
 		else:
-			for m in allMobs:
-				for index in m.get_slide_collision_count():
-					var collision = m.get_slide_collision(index)
-					var body = collision.get_collider()
-					if body.name == "Player":
-						finish = true
+			checkCollisions()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if finish:
 		doFinshingCode()
+	else:
+		checkFallOver()
+		checkFinishConditions()
+		runsCount += 1
 	
-	checkFallOver()
-	checkFinishConditions()
+	if Input.is_action_pressed("exit"):
+		finish = true
+		force_finish = true
 	
-	runsCount += 1
 
