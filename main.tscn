@@ -25,7 +25,7 @@ mesh = SubResource("BoxMesh_iuy3a")
 transform = Transform3D(1, 0, 0, 0, -0.0157946, 0.999875, 0, -0.999875, -0.0157946, 0, 16.4687, 0)
 shadow_enabled = true
 
-[node name="Mob" parent="." instance=ExtResource("2_dsjst")]
+[node name="Player" parent="." instance=ExtResource("2_dsjst")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.848048, 0.529919, 0, -0.529919, 0.848048, 0, 8, 42)

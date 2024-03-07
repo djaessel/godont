@@ -18,7 +18,7 @@ size = Vector3(2, 1, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_xor2c"]
 size = Vector3(2, 1, 2)
 
-[node name="Mob" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_mgqe3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
