@@ -45,7 +45,7 @@ func makingDecision():
 				direction.z -= 55
 			15, 5: # jump
 				jumping = true
-			6: # eat
+			16, 6: # eat
 				eating = true
 		timeout = 100
 		cycles += 1
