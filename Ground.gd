@@ -45,7 +45,7 @@ func doFinshingCode():
 func getAllMobs():
 	var mobs = []
 	for m in get_children():
-		if m.get_node_or_null("MobyMesh") != null:
+		if m.get_node_or_null("ArnoldAnim") != null:
 			mobs.push_back(m)
 	return mobs
 

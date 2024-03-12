@@ -43,4 +43,5 @@ modulate = Color(0.0823529, 0.647059, 0.439216, 1)
 
 [node name="backgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_qi5pc")
-volume_db = 4.917
+volume_db = -1.0
+pitch_scale = 0.48

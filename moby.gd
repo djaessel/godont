@@ -15,9 +15,15 @@ var eating = false
 var timeout = 50
 
 
+#func _ready():
+#	get_node("ArnoldAnim").play()
+
+
 func handleEating():
 	if eating:
 		eating = false
+		get_node("ArnoldAnim").play()
+		get_node("NoProblemo").play()
 		var topText = get_node("TopText")
 		topText.text = "Es isst"
 		var spawnNew = preload("res://moby.tscn")
@@ -27,6 +33,9 @@ func handleEating():
 		spawnNewX.position.y = 5
 		get_parent().add_child(spawnNewX)
 		await get_tree().create_timer(5).timeout
+		get_node("ArnoldAnim").stop()
+		get_node("NoProblemo").stop()
+
 
 
 func makingDecision():
