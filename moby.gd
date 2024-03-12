@@ -6,11 +6,15 @@ extends CharacterBody3D
 @export var fall_acceleration = 75
 # how long is it around
 @export var cycles = 0
+# can trigger eating
+@export var triggerEating = false
 
 var target_velocity = Vector3.ZERO
 
-var maxY = 0.15
+# jumping
+var maxY = 5
 var jumping = false
+
 var eating = false
 var timeout = 50
 
@@ -20,11 +24,12 @@ var timeout = 50
 
 
 func handleEating():
-	if eating:
-		eating = false
+	var topText = get_node("TopText")
+	if triggerEating:
+		triggerEating = false
+		eating = true
 		get_node("ArnoldAnim").play()
 		get_node("NoProblemo").play()
-		var topText = get_node("TopText")
 		topText.text = "Es isst"
 		var spawnNew = preload("res://moby.tscn")
 		var spawnNewX = spawnNew.instantiate()
@@ -32,10 +37,15 @@ func handleEating():
 		spawnNewX.position.z = position.z + 1
 		spawnNewX.position.y = 5
 		get_parent().add_child(spawnNewX)
-		await get_tree().create_timer(5).timeout
+		await get_tree().create_timer(2).timeout
 		get_node("ArnoldAnim").stop()
-		get_node("NoProblemo").stop()
-
+		if get_tree() != null: # safety since sometimes tree is null for some reason
+			await get_tree().create_timer(3).timeout
+		eating = false
+	elif eating:
+		target_velocity = Vector3.ZERO;
+	else:
+		topText.text = "Es ist " + str(cycles)
 
 
 func makingDecision():
@@ -52,10 +62,10 @@ func makingDecision():
 				direction.z += 55
 			14, 4: # move forward
 				direction.z -= 55
-			15, 5: # jump
+			15, 5, 6, 16, 7,8,9: # jump
 				jumping = true
-			16, 6: # eat
-				eating = true
+			#16, 6: # eat
+			#	triggerEating = true
 		timeout = 100
 		cycles += 1
 		
@@ -79,19 +89,19 @@ func handleVelocity(direction, delta):
 			jumping = false
 
 
+func handleMovement():
+	velocity = target_velocity
+	move_and_slide()
+
+
 func _physics_process(delta):
 	if not get_parent().finish:
 		timeout -= 1
 		
+		# has to be called before the handling code
 		var direction = makingDecision()
 		
 		handleEating()
 		handleVelocity(direction, delta)
-		
-		var topText = get_node("TopText")
-		topText.text = "Es ist " + str(cycles)
-		
-		# Moving the Character
-		velocity = target_velocity
-		move_and_slide()
+		handleMovement() # Moving the Character
 

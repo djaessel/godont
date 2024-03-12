@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxinx1n6dj07m"]
+
+[ext_resource type="Texture2D" uid="uid://dx4yk4q07ysqo" path="res://icon.svg" id="1_wy7ke"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uepqt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t78k"]
+
+[node name="Food" type="StaticBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_uepqt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_0t78k")
+
+[node name="FoodSprite1" type="Sprite3D" parent="."]
+texture = ExtResource("1_wy7ke")

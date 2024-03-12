@@ -11,7 +11,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var player = get_parent().get_node("Player")
 	if not player.dead:
 		position.x = player.position.x
