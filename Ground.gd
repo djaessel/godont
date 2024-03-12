@@ -6,6 +6,7 @@ var oldest = 0
 var youngest = 1000000
 var won = false
 var runsCount = 0
+var firstCallFinish = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,23 +24,27 @@ func _ready():
 func doFinshingCode():
 	if force_finish:
 		get_tree().quit()
-	
-	var groundMesh = get_node("SuperMesh")
-	var player = get_parent().get_node("Player")
-	if player.dead:
-		groundMesh.get_active_material(0).albedo_color = Color(0.9, 0.1, 0.1)
-	
-	var finishLabel = get_parent().get_node("FinishLabel")
-	if won:
-		finishLabel.text = "You WON!\n"
-		groundMesh.get_active_material(0).albedo_color = Color(0.1, 0.5, 0.1)
-	else:
-		finishLabel.text = "You LOST!\n"
-		finishLabel.modulate = Color(1.0, 0.2, 0.0)
-		groundMesh.get_active_material(0).albedo_color = Color(0.5, 0.1, 0.1)
-	finishLabel.text += "Oldest: " + str(oldest) + "\n"
-	finishLabel.text += "Youngest: " + str(youngest) + "\n"
-	finishLabel.text += "Runs: " + str(runsCount) + "\n"
+	elif firstCallFinish:
+		firstCallFinish = false
+		
+		var groundMesh = get_node("SuperMesh")
+		var player = get_parent().get_node("Player")
+		if player.dead:
+			groundMesh.get_active_material(0).albedo_color = Color(0.9, 0.1, 0.1)
+			for m in getAllMobs():
+				m.get_node("HastaLaVista").play()
+		
+		var finishLabel = get_parent().get_node("FinishLabel")
+		if won:
+			finishLabel.text = "You WON!\n"
+			groundMesh.get_active_material(0).albedo_color = Color(0.1, 0.5, 0.1)
+		else:
+			finishLabel.text = "You LOST!\n"
+			finishLabel.modulate = Color(1.0, 0.2, 0.0)
+			groundMesh.get_active_material(0).albedo_color = Color(0.5, 0.1, 0.1)
+		finishLabel.text += "Oldest: " + str(oldest) + "\n"
+		finishLabel.text += "Youngest: " + str(youngest) + "\n"
+		finishLabel.text += "Runs: " + str(runsCount) + "\n"
 
 
 func getAllMobs():
@@ -67,8 +72,9 @@ func checkCollisions():
 		for index in m.get_slide_collision_count():
 			var collision = m.get_slide_collision(index)
 			var body = collision.get_collider()
-			if body.name == "Player":
+			if "Player" in body.name:
 				finish = true
+				m.get_node("Excellent").play()
 	var player = get_parent().get_node("Player")
 	for index in player.get_slide_collision_count():
 		var collision = player.get_slide_collision(index)
