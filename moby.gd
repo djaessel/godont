@@ -9,6 +9,8 @@ extends CharacterBody3D
 # can trigger eating
 @export var triggerEating = false
 
+@export var hasEaten = 0
+
 var target_velocity = Vector3.ZERO
 
 # jumping
@@ -42,6 +44,7 @@ func handleEating():
 		if get_tree() != null: # safety since sometimes tree is null for some reason
 			await get_tree().create_timer(3).timeout
 		eating = false
+		hasEaten += 1
 	elif eating:
 		target_velocity = Vector3.ZERO;
 	else:

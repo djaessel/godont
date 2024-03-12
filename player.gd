@@ -6,6 +6,8 @@ extends CharacterBody3D
 @export var fall_acceleration = 75
 # Player should be dead when true
 @export var dead = false
+# Player got hit or died
+@export var hit = false
 
 var target_velocity = Vector3.ZERO
 

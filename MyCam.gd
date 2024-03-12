@@ -13,10 +13,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	var player = get_parent().get_node("Player")
-	if not player.dead:
+	var ground = get_parent().get_node("Ground")
+	if not player.dead and not player.hit and not ground.finish:
 		position.x = player.position.x
 		position.y = player.position.y + differ * 2
 	else:
 		position.x = 0
-		position.y = 10
+		position.y = 12
 	

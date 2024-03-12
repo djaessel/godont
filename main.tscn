@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bht7s8su4eybd"]
+[gd_scene load_steps=11 format=3 uid="uid://bht7s8su4eybd"]
 
 [ext_resource type="Script" path="res://Ground.gd" id="1_kq3cc"]
 [ext_resource type="PackedScene" uid="uid://biktulgqrrh4f" path="res://player.tscn" id="2_dsjst"]
 [ext_resource type="Script" path="res://MyCam.gd" id="3_plwtd"]
 [ext_resource type="AudioStream" uid="uid://ci2pcvnbs75he" path="res://backgroundMusic1.mp3" id="4_qi5pc"]
+[ext_resource type="AudioStream" uid="uid://3cgkefd683fo" path="res://sound/t1_be_back.wav" id="5_6j6iu"]
+[ext_resource type="AudioStream" uid="uid://d0p6v784b8qc" path="res://sound/t3_destiny.wav" id="6_gak0y"]
+[ext_resource type="AudioStream" uid="uid://bixl0g738kvjs" path="res://sound/t3_terminated.wav" id="7_rlw8f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ylrk6"]
 size = Vector3(60, 2, 60)
@@ -19,6 +22,12 @@ size = Vector3(60, 2, 60)
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 script = ExtResource("1_kq3cc")
+
+[node name="oneDied" type="AudioStreamPlayer3D" parent="Ground"]
+stream = ExtResource("5_6j6iu")
+volume_db = -1.0
+pitch_scale = 0.79
+emission_angle_enabled = true
 
 [node name="SuperCollision" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_ylrk6")
@@ -45,3 +54,12 @@ modulate = Color(0.0823529, 0.647059, 0.439216, 1)
 stream = ExtResource("4_qi5pc")
 volume_db = -1.0
 pitch_scale = 0.48
+autoplay = true
+
+[node name="won" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_gak0y")
+
+[node name="lost" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_rlw8f")
+volume_db = 1.0
+pitch_scale = 0.7

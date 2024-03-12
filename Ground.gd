@@ -2,8 +2,9 @@ extends StaticBody3D
 
 @export var finish = false
 var force_finish = false
-var oldest = 0
+var oldest = -1
 var youngest = 1000000
+var mostEaten = -1
 var won = false
 var runsCount = 0
 var firstCallFinish = true
@@ -36,6 +37,23 @@ func spawnInitialMobs():
 		add_child(m)
 
 
+func createFinishLabel():
+	var groundMesh = get_node("SuperMesh")
+	var finishLabel = get_parent().get_node("FinishLabel")
+	if won:
+		finishLabel.text = "You WON!\n"
+		groundMesh.get_active_material(0).albedo_color = Color(0.1, 0.5, 0.1)
+	else:
+		finishLabel.text = "You LOST!\n"
+		finishLabel.modulate = Color(1.0, 0.2, 0.0)
+		groundMesh.get_active_material(0).albedo_color = Color(0.5, 0.1, 0.1)
+	finishLabel.text += "Oldest: " + str(oldest) + "\n"
+	finishLabel.text += "Youngest: " + str(youngest) + "\n"
+	finishLabel.text += "MostEaten: " + str(mostEaten) + "\n" 
+	finishLabel.text += "Food left: " + str(len(getAllFood())) + "\n"
+	#finishLabel.text += "Runs: " + str(runsCount) + "\n"
+
+
 func doFinshingCode():
 	if force_finish:
 		get_tree().quit()
@@ -44,28 +62,25 @@ func doFinshingCode():
 		
 		if youngest >= 1000000:
 			youngest = -1
-		if oldest == 0:
-			oldest = -1
 		
-		var groundMesh = get_node("SuperMesh")
+		for m in getAllMobs():
+			if mostEaten < m.hasEaten:
+				mostEaten = m.hasEaten
+		
 		var player = get_parent().get_node("Player")
 		if player.dead:
+			var groundMesh = get_node("SuperMesh")
 			groundMesh.get_active_material(0).albedo_color = Color(0.9, 0.1, 0.1)
 			for m in getAllMobs():
 				m.get_node("HastaLaVista").play()
 		
-		var finishLabel = get_parent().get_node("FinishLabel")
 		if won:
-			finishLabel.text = "You WON!\n"
-			groundMesh.get_active_material(0).albedo_color = Color(0.1, 0.5, 0.1)
+			get_parent().get_node("won").play()
 		else:
-			finishLabel.text = "You LOST!\n"
-			finishLabel.modulate = Color(1.0, 0.2, 0.0)
-			groundMesh.get_active_material(0).albedo_color = Color(0.5, 0.1, 0.1)
-		finishLabel.text += "Oldest: " + str(oldest) + "\n"
-		finishLabel.text += "Youngest: " + str(youngest) + "\n"
-		finishLabel.text += "Food left: " + str(len(getAllFood())) + "\n"
-		finishLabel.text += "Runs: " + str(runsCount) + "\n"
+			get_parent().get_node("lost").play()
+		
+		createFinishLabel()
+
 
 
 func getAllFood():
@@ -87,32 +102,38 @@ func getAllMobs():
 func checkFallOver():
 	for m in getAllMobs():
 		if m.position.y < -5:
+			get_node("oneDied").play()
+			
 			if m.cycles < youngest:
 				youngest = m.cycles
 			if m.cycles > oldest:
 				oldest = m.cycles
+			if mostEaten < m.hasEaten:
+				mostEaten = m.hasEaten
 			#print("One jumped over! > ", m.get_instance_id(), " | Cycles: ", m.cycles)
 			remove_child(m)
 
 
 func checkCollisions():
 	var allMobs = getAllMobs()
+	var player = get_parent().get_node("Player")
 	for m in allMobs:
 		for index in m.get_slide_collision_count():
 			var collision = m.get_slide_collision(index)
 			var body = collision.get_collider()
 			if "Player" in body.name:
 				finish = true
+				player.hit = true
 				m.get_node("Excellent").play()
 			elif "StaticBody3D" in body.name:
 				m.triggerEating = true
 				remove_child(body)
-	var player = get_parent().get_node("Player")
 	for index in player.get_slide_collision_count():
 		var collision = player.get_slide_collision(index)
 		var body = collision.get_collider()
 		if "CharacterBody3D" in body.name:
 			finish = true
+			player.hit = true
 
 
 func checkFinishConditions():
