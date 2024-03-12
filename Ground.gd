@@ -42,6 +42,11 @@ func doFinshingCode():
 	elif firstCallFinish:
 		firstCallFinish = false
 		
+		if youngest >= 1000000:
+			youngest = -1
+		if oldest == 0:
+			oldest = -1
+		
 		var groundMesh = get_node("SuperMesh")
 		var player = get_parent().get_node("Player")
 		if player.dead:
