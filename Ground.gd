@@ -124,10 +124,11 @@ func checkCollisions():
 			var collision = m.get_slide_collision(index)
 			var body = collision.get_collider()
 			if "Player" in body.name:
-				player.hit()
-				if player.dead:
+				while player.hp > 0:
+					player.hit()
+				if player.dead: # irrelevant
 					finish = true
-				m.get_node("Excellent").play()
+				m.get_node("GoodBye").play()
 			elif "StaticBody3D" in body.name: # check later with sub nodes
 				m.triggerEating = true
 				remove_child(body)

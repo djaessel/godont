@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bds0xnrvdoqrt" path="res://img/arnold-636400426763362208-1576203277.png" id="1_ybdqy"]
 [ext_resource type="Texture2D" uid="uid://doo5jjb08gtos" path="res://img/arnold-schwarzenegger-face-png-graphic-library-download-arnold-schwarzenegger-face-11563008984bsi42khina-1628091131.png" id="2_xla3l"]
 [ext_resource type="AudioStream" uid="uid://8pg4ac1pucx2" path="res://sound/t2_no_problemo.wav" id="4_o0liw"]
-[ext_resource type="AudioStream" uid="uid://c3oeoo038xd2f" path="res://sound/t1_excellent.wav" id="5_ay8ab"]
+[ext_resource type="AudioStream" uid="uid://0ck23578pulq" path="res://sound/t2_goodbye.wav" id="5_24lpw"]
 [ext_resource type="AudioStream" uid="uid://depapx15gkqav" path="res://sound/t2_hasta_la_vista.wav" id="6_cd2ur"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xejqy"]
@@ -44,8 +44,8 @@ text = "Es ist"
 [node name="NoProblemo" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_o0liw")
 
-[node name="Excellent" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("5_ay8ab")
+[node name="GoodBye" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_24lpw")
 
 [node name="HastaLaVista" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_cd2ur")
