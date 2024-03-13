@@ -17,6 +17,9 @@ var target_velocity = Vector3.ZERO
 var maxY = 5
 var jumping = false
 
+# shooting
+var bullet = false
+
 var eating = false
 var timeout = 50
 
@@ -51,6 +54,26 @@ func handleEating():
 		topText.text = "Es ist " + str(cycles)
 
 
+func handleBullet():
+	if bullet:
+		bullet = false
+		var spawnNew = preload("res://bullet.tscn")
+		var spawnNewX = spawnNew.instantiate()
+		spawnNewX.position.x = position.x + 0.5
+		spawnNewX.position.z = position.z + 0.5
+		var velo = Vector3.ZERO
+		velo.z = randi_range(-5, 5) * speed
+		velo.x = randi_range(-5, 5) * speed
+		if velo.z < 0:
+			spawnNewX.rotate_z(90)
+		if velo.x < 0:
+			spawnNewX.rotate_x(-90)
+		if velo != Vector3.ZERO:
+			velo.normalized()
+		spawnNewX.set_axis_velocity(velo)
+		get_parent().add_child(spawnNewX)
+
+
 func makingDecision():
 	var direction = Vector3.ZERO
 
@@ -65,8 +88,10 @@ func makingDecision():
 				direction.z += 55
 			14, 4: # move forward
 				direction.z -= 55
-			15, 5, 6, 16, 7,8,9: # jump
+			15, 5, 16, 6: # jump
 				jumping = true
+			17, 18, 19, 7, 8, 9: # bullet
+				bullet = true
 			#16, 6: # eat
 			#	triggerEating = true
 		timeout = 100
@@ -105,6 +130,7 @@ func _physics_process(delta):
 		var direction = makingDecision()
 		
 		handleEating()
+		handleBullet()
 		handleVelocity(direction, delta)
 		handleMovement() # Moving the Character
 

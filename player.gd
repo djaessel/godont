@@ -65,6 +65,6 @@ func handleEating():
 
 func _physics_process(delta):
 	if not get_parent().get_node("Ground").finish:
-		handleEating()
+		#handleEating()
 		movement(delta)
 

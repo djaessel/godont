@@ -5,6 +5,7 @@ var force_finish = false
 var oldest = -1
 var youngest = 1000000
 var mostEaten = -1
+var foodEaten = 0
 var won = false
 var runsCount = 0
 var firstCallFinish = true
@@ -50,8 +51,7 @@ func createFinishLabel():
 	finishLabel.text += "Oldest: " + str(oldest) + "\n"
 	finishLabel.text += "Youngest: " + str(youngest) + "\n"
 	finishLabel.text += "MostEaten: " + str(mostEaten) + "\n" 
-	finishLabel.text += "Food left: " + str(len(getAllFood())) + "\n"
-	#finishLabel.text += "Runs: " + str(runsCount) + "\n"
+	finishLabel.text += "Food eaten: " + str(foodEaten) + "\n"
 
 
 func doFinshingCode():
@@ -66,6 +66,7 @@ func doFinshingCode():
 		for m in getAllMobs():
 			if mostEaten < m.hasEaten:
 				mostEaten = m.hasEaten
+			foodEaten += m.hasEaten
 		
 		var player = get_parent().get_node("Player")
 		if player.dead:
@@ -110,7 +111,8 @@ func checkFallOver():
 				oldest = m.cycles
 			if mostEaten < m.hasEaten:
 				mostEaten = m.hasEaten
-			#print("One jumped over! > ", m.get_instance_id(), " | Cycles: ", m.cycles)
+			foodEaten += m.hasEaten
+			
 			remove_child(m)
 
 
@@ -125,13 +127,13 @@ func checkCollisions():
 				finish = true
 				player.hit = true
 				m.get_node("Excellent").play()
-			elif "StaticBody3D" in body.name:
+			elif "StaticBody3D" in body.name: # check later with sub nodes
 				m.triggerEating = true
 				remove_child(body)
 	for index in player.get_slide_collision_count():
 		var collision = player.get_slide_collision(index)
 		var body = collision.get_collider()
-		if "CharacterBody3D" in body.name:
+		if "CharacterBody3D" in body.name: # check later with sub nodes
 			finish = true
 			player.hit = true
 
@@ -140,11 +142,9 @@ func checkFinishConditions():
 	if not finish:
 		var player = get_parent().get_node("Player")
 		if len(getAllMobs()) <= 0:
-			#print("All enemies are dead!")
 			won = true
 			finish = true
 		elif player.position.y < -5:
-			#print("You are dead!")
 			player.dead = true
 			finish = true
 		else:
