@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxinx1n6dj07m"]
 
-[ext_resource type="Texture2D" uid="uid://dx4yk4q07ysqo" path="res://icon.svg" id="1_wy7ke"]
+[ext_resource type="Texture2D" uid="uid://bni3jo7qd1w0a" path="res://img/motherboard_transparent_1.png" id="1_3y3en"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uepqt"]
 
@@ -13,4 +13,5 @@ physics_material_override = SubResource("PhysicsMaterial_uepqt")
 shape = SubResource("CapsuleShape3D_0t78k")
 
 [node name="FoodSprite1" type="Sprite3D" parent="."]
-texture = ExtResource("1_wy7ke")
+pixel_size = 0.005
+texture = ExtResource("1_3y3en")
