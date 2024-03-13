@@ -13,5 +13,5 @@ physics_material_override = SubResource("PhysicsMaterial_uepqt")
 shape = SubResource("CapsuleShape3D_0t78k")
 
 [node name="FoodSprite1" type="Sprite3D" parent="."]
-pixel_size = 0.005
+pixel_size = 0.0075
 texture = ExtResource("1_3y3en")
