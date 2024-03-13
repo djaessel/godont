@@ -69,7 +69,7 @@ func doFinshingCode():
 			foodEaten += m.hasEaten
 		
 		var player = get_parent().get_node("Player")
-		if player.dead:
+		if player.dead and player.hp > 0:
 			var groundMesh = get_node("SuperMesh")
 			groundMesh.get_active_material(0).albedo_color = Color(0.9, 0.1, 0.1)
 			for m in getAllMobs():
@@ -124,8 +124,9 @@ func checkCollisions():
 			var collision = m.get_slide_collision(index)
 			var body = collision.get_collider()
 			if "Player" in body.name:
-				finish = true
-				player.hit = true
+				player.hit()
+				if player.dead:
+					finish = true
 				m.get_node("Excellent").play()
 			elif "StaticBody3D" in body.name: # check later with sub nodes
 				m.triggerEating = true
@@ -134,8 +135,9 @@ func checkCollisions():
 		var collision = player.get_slide_collision(index)
 		var body = collision.get_collider()
 		if "CharacterBody3D" in body.name: # check later with sub nodes
-			finish = true
-			player.hit = true
+			player.hit()
+			if player.dead:
+				finish = true
 
 
 func checkFinishConditions():

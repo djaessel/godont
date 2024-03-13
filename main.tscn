@@ -45,6 +45,11 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 0.848048, 0.529919, 0, -0.529919, 0.848048, 0, 8, 42)
 script = ExtResource("3_plwtd")
 
+[node name="hp_text" type="Label3D" parent="MyCam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.55724, -13.6944)
+pixel_size = 0.025
+text = "HP: 1"
+
 [node name="FinishLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.58344, 0)
 pixel_size = 0.05

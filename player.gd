@@ -6,8 +6,8 @@ extends CharacterBody3D
 @export var fall_acceleration = 75
 # Player should be dead when true
 @export var dead = false
-# Player got hit or died
-@export var hit = false
+# player health points
+@export var hp = 5
 
 var target_velocity = Vector3.ZERO
 
@@ -63,8 +63,18 @@ func handleEating():
 		get_parent().add_child(spawnNewX)
 
 
+func handleHP():
+	if self.hp <= 0:
+		self.dead = true
+
+
+func hit():
+	self.hp -= 1
+
+
 func _physics_process(delta):
 	if not get_parent().get_node("Ground").finish:
 		#handleEating()
+		handleHP()
 		movement(delta)
 

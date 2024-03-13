@@ -8,8 +8,9 @@ func _ready() -> void:
 
 func _on_Area_body_entered(body:Node) -> void:
 	if "Player" in body.name:
-		get_parent().get_node("hit").play()
-		body.hit = true
+		body.hit()
+		if body.dead:
+			get_parent().get_node("hit").play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
