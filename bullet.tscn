@@ -3,35 +3,27 @@
 [ext_resource type="AudioStream" uid="uid://c3oeoo038xd2f" path="res://sound/t1_excellent.wav" id="1_647md"]
 [ext_resource type="Script" path="res://bullet.gd" id="1_fyw5o"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_2d1nt"]
-height = 0.75
-radius = 0.25
+[sub_resource type="SphereShape3D" id="SphereShape3D_28844"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5aqt"]
-albedo_color = Color(0.8, 0.6, 0.447059, 1)
-metallic = 0.67
-emission_enabled = true
-emission = Color(0.34902, 0.301961, 0.141176, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_alsrx"]
+albedo_color = Color(0.294118, 0.470588, 0.470588, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_xvmke"]
-material = SubResource("StandardMaterial3D_a5aqt")
-top_radius = 0.05
-bottom_radius = 0.2
-height = 0.75
+[sub_resource type="SphereMesh" id="SphereMesh_ni4yx"]
+material = SubResource("StandardMaterial3D_alsrx")
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_tursh"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_mywxp"]
 
 [node name="Bullet" type="RigidBody3D"]
-transform = Transform3D(0.580703, 0, 0.814116, 0, 1, 0, -0.814116, 0, 0.580703, 0, 0, 0)
-mass = 0.25
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.87474, 0)
+mass = 0.15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("CylinderShape3D_2d1nt")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.772536, 0)
+shape = SubResource("SphereShape3D_28844")
 
 [node name="bulletMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_xvmke")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.769496, 0)
+mesh = SubResource("SphereMesh_ni4yx")
 
 [node name="hit" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("1_647md")
@@ -40,5 +32,5 @@ stream = ExtResource("1_647md")
 script = ExtResource("1_fyw5o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("CylinderShape3D_tursh")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.761115, 0)
+shape = SubResource("SphereShape3D_mywxp")
