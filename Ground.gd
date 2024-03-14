@@ -149,9 +149,10 @@ func checkFinishConditions():
 			finish = true
 		elif player.position.y < -5:
 			player.dead = true
-			finish = true
 		else:
 			checkCollisions()
+		if player.dead:
+			finish = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

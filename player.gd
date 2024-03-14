@@ -64,7 +64,7 @@ func handleEating():
 
 
 func handleHP():
-	if self.hp <= 0:
+	if not self.dead and self.hp <= 0:
 		self.dead = true
 
 
