@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bht7s8su4eybd"]
+[gd_scene load_steps=13 format=3 uid="uid://bht7s8su4eybd"]
 
 [ext_resource type="Script" path="res://Ground.gd" id="1_kq3cc"]
 [ext_resource type="PackedScene" uid="uid://biktulgqrrh4f" path="res://player.tscn" id="2_dsjst"]
+[ext_resource type="Texture2D" uid="uid://dh5nsbeoqy13i" path="res://img/wall.jpg" id="3_1m22f"]
 [ext_resource type="Script" path="res://MyCam.gd" id="3_plwtd"]
 [ext_resource type="AudioStream" uid="uid://ci2pcvnbs75he" path="res://backgroundMusic1.mp3" id="4_qi5pc"]
 [ext_resource type="AudioStream" uid="uid://3cgkefd683fo" path="res://sound/t1_be_back.wav" id="5_6j6iu"]
@@ -12,6 +13,7 @@
 size = Vector3(60, 2, 60)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kv8e"]
+albedo_texture = ExtResource("3_1m22f")
 
 [sub_resource type="BoxMesh" id="BoxMesh_iuy3a"]
 material = SubResource("StandardMaterial3D_3kv8e")
