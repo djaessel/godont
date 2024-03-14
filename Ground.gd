@@ -135,7 +135,7 @@ func checkCollisions():
 	for index in player.get_slide_collision_count():
 		var collision = player.get_slide_collision(index)
 		var body = collision.get_collider()
-		if "CharacterBody3D" in body.name: # check later with sub nodes
+		if body != null and "CharacterBody3D" in body.name: # check later with sub nwwwodes
 			player.hit()
 			if player.dead:
 				finish = true

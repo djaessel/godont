@@ -11,9 +11,12 @@ func _on_Area_body_entered(body:Node) -> void:
 		body.hit()
 		if body.dead:
 			get_parent().get_node("hit").play()
+			if get_tree() != null:
+				get_tree().create_timer(1).timeout
+		get_parent().queue_free() # directly removes (bullet) node
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	lifetime -= 1
 	if lifetime <= 0:
-		get_parent().get_parent().remove_child(get_parent())
+		get_parent().queue_free() # directly removes (bullet) node
