@@ -62,15 +62,15 @@ func handleBullet():
 		spawnNewX.position.x = position.x + 0.5
 		spawnNewX.position.z = position.z + 0.5
 		var velo = Vector3.ZERO
-		velo.z = randi_range(-5, 5) * speed
-		velo.x = randi_range(-5, 5) * speed
-		if velo.z < 0:
-			spawnNewX.rotate_z(90)
-		if velo.x < 0:
-			spawnNewX.rotate_x(-90)
+		#Unit vector pointing at the target position from the characters position
+		var player = get_parent().get_parent().get_node("Player")
+		var direction = global_position.direction_to(player.global_position)
+		velo = direction * speed
+		velo.y += 1
 		if velo != Vector3.ZERO:
 			velo.normalized()
-		spawnNewX.set_axis_velocity(velo)
+		spawnNewX.add_constant_force(velo, spawnNewX.global_position)
+		spawnNewX.look_at(player.global_position)
 		get_parent().add_child(spawnNewX)
 
 

@@ -22,6 +22,7 @@ height = 0.75
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tursh"]
 
 [node name="Bullet" type="RigidBody3D"]
+transform = Transform3D(0.580703, 0, 0.814116, 0, 1, 0, -0.814116, 0, 0.580703, 0, 0, 0)
 mass = 0.25
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -70,6 +70,8 @@ func handleHP():
 
 func hit():
 	self.hp -= 1
+	if self.hp <= 0:
+		self.dead = true
 
 
 func _physics_process(delta):
