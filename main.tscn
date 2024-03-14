@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bht7s8su4eybd"]
+[gd_scene load_steps=12 format=3 uid="uid://bht7s8su4eybd"]
 
 [ext_resource type="Script" path="res://Ground.gd" id="1_kq3cc"]
 [ext_resource type="PackedScene" uid="uid://biktulgqrrh4f" path="res://player.tscn" id="2_dsjst"]
@@ -16,6 +16,8 @@ size = Vector3(60, 2, 60)
 [sub_resource type="BoxMesh" id="BoxMesh_iuy3a"]
 material = SubResource("StandardMaterial3D_3kv8e")
 size = Vector3(60, 2, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_12ux8"]
 
 [node name="Main" type="Node3D"]
 
@@ -68,3 +70,27 @@ stream = ExtResource("6_gak0y")
 stream = ExtResource("7_rlw8f")
 volume_db = 1.0
 pitch_scale = 0.7
+
+[node name="Wall1" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall1"]
+transform = Transform3D(1, 0, 0, 0, 4, 0, 0, 0, 60, -30, 2, 0)
+shape = SubResource("BoxShape3D_12ux8")
+
+[node name="Wall2" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
+transform = Transform3D(1, 0, 0, 0, 4, 0, 0, 0, 60, 30, 2, 0)
+shape = SubResource("BoxShape3D_12ux8")
+
+[node name="Wall3" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3"]
+transform = Transform3D(-4.37114e-08, 0, 60, 0, 4, 0, -1, 0, -2.62268e-06, 0, 2, 30)
+shape = SubResource("BoxShape3D_12ux8")
+
+[node name="Wall4" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4"]
+transform = Transform3D(-4.37114e-08, 0, 60, 0, 4, 0, -1, 0, -2.62268e-06, 0, 2, -30)
+shape = SubResource("BoxShape3D_12ux8")
