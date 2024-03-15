@@ -54,6 +54,21 @@ func createFinishLabel():
 	finishLabel.text += "Food eaten: " + str(foodEaten) + "\n"
 
 
+func saveFinalState():
+	var saveData = {
+		"won": won,
+		"oldest": oldest,
+		"youngest": youngest,
+		"mostEaten": mostEaten,
+		"foodEaten": foodEaten,
+	}
+	
+	var file = FileAccess.open("./saveGames/save0", FileAccess.WRITE | FileAccess.READ)
+	file.seek_end()
+	file.store_line(JSON.stringify(saveData))
+	file.close()
+
+
 func doFinshingCode():
 	if force_finish:
 		get_tree().quit()
@@ -81,6 +96,7 @@ func doFinshingCode():
 			get_parent().get_node("lost").play()
 		
 		createFinishLabel()
+		saveFinalState()
 
 
 
