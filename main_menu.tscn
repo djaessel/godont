@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnhpwps40l1tf"]
+
+[ext_resource type="Texture2D" uid="uid://dh5nsbeoqy13i" path="res://img/wall.jpg" id="1_a414v"]
+[ext_resource type="Script" path="res://main_menu.gd" id="2_cfsdc"]
+[ext_resource type="AudioStream" uid="uid://ci2pcvnbs75he" path="res://backgroundMusic1.mp3" id="3_hn54y"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kuech"]
+font_size = 40
+font_color = Color(0.339558, 0.125591, 0.0643217, 0.607843)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hn54y")
+volume_db = 4.0
+pitch_scale = 0.25
+autoplay = true
+max_polyphony = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 1601.0
+offset_bottom = 1070.0
+texture = ExtResource("1_a414v")
+stretch_mode = 3
+script = ExtResource("2_cfsdc")
+
+[node name="PlayButton" type="Button" parent="Background"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 172.0
+offset_right = 516.0
+offset_bottom = 253.0
+tooltip_text = "Start the game"
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="Background"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 268.0
+offset_right = 516.0
+offset_bottom = 349.0
+tooltip_text = "Open Settings"
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="Background"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 364.0
+offset_right = 516.0
+offset_bottom = 445.0
+tooltip_text = "Close the game"
+text = "Exit"
+
+[node name="Label" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 41.0
+offset_right = 535.0
+offset_bottom = 137.0
+text = "Godont"
+label_settings = SubResource("LabelSettings_kuech")
+horizontal_alignment = 1
+vertical_alignment = 1

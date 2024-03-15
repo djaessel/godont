@@ -10,9 +10,12 @@ var won = false
 var runsCount = 0
 var firstCallFinish = true
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_parent().get_node("backgroundMusic").play()
+	# reset ground mesh
+	get_node("SuperMesh").get_active_material(0).albedo_color = Color(1.0, 1.0, 1.0)
 	# Spawn initial stuff
 	spawnInitialFood()
 	spawnInitialMobs()
@@ -78,7 +81,7 @@ func saveFinalState():
 
 func doFinshingCode():
 	if force_finish:
-		get_tree().quit()
+		get_parent().queue_free()
 	elif firstCallFinish:
 		firstCallFinish = false
 		
@@ -146,22 +149,24 @@ func checkCollisions():
 		for index in m.get_slide_collision_count():
 			var collision = m.get_slide_collision(index)
 			var body = collision.get_collider()
-			if "Player" in body.name:
-				while player.hp > 0:
-					player.hit()
-				if player.dead: # irrelevant
-					finish = true
-				m.get_node("GoodBye").play()
-			elif "StaticBody3D" in body.name: # check later with sub nodes
-				m.triggerEating = true
-				remove_child(body)
+			if body != null:
+				if "Player" in body.name:
+					while player.hp > 0:
+						player.hit()
+					if player.dead: # irrelevant
+						finish = true
+					m.get_node("GoodBye").play()
+				elif "StaticBody3D" in body.name: # check later with sub nodes
+					m.triggerEating = true
+					remove_child(body)
 	for index in player.get_slide_collision_count():
 		var collision = player.get_slide_collision(index)
 		var body = collision.get_collider()
-		if body != null and "CharacterBody3D" in body.name: # check later with sub nwwwodes
-			player.hit()
-			if player.dead:
-				finish = true
+		if body != null:
+			if "CharacterBody3D" in body.name: # check later with sub nwwwodes
+				player.hit()
+				if player.dead:
+					finish = true
 
 
 func checkFinishConditions():
@@ -190,5 +195,6 @@ func _process(_delta):
 	if Input.is_action_pressed("exit"):
 		finish = true
 		force_finish = true
+		get_tree().root.get_node("MainMenu").show()
 	
 
