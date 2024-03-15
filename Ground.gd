@@ -63,10 +63,17 @@ func saveFinalState():
 		"foodEaten": foodEaten,
 	}
 	
-	var file = FileAccess.open("./saveGames/save0", FileAccess.WRITE | FileAccess.READ)
-	file.seek_end()
-	file.store_line(JSON.stringify(saveData))
-	file.close()
+	var dir = DirAccess.open("user://")
+	if not dir.dir_exists("user://saveGames"):
+		dir.make_dir("./saveGames")
+		var file = FileAccess.open("user://saveGames/save0", FileAccess.WRITE)
+		file.store_line("save version 1")
+		file.close()
+	
+	var filex = FileAccess.open("user://saveGames/save0", FileAccess.WRITE | FileAccess.READ)
+	filex.seek_end()
+	filex.store_line(JSON.stringify(saveData))
+	filex.close()
 
 
 func doFinshingCode():
