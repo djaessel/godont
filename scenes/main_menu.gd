@@ -3,6 +3,7 @@ extends TextureRect
 var mainGame = preload("res://scenes/main.tscn")
 var settingsMenu = preload("res://scenes/settings.tscn")
 var settingsAdded = false
+var firstRun = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,6 +13,28 @@ func _ready():
 	get_node("PlayButton").connect("pressed", _start_game)
 	get_node("SettingsButton").connect("pressed", _open_settings)
 	get_node("ExitButton").connect("pressed", _exit_game)
+
+
+func handleConsoleArgs():
+	var hasArgs = false
+	var curArgName : String
+	var curArgData : String
+	for argument in OS.get_cmdline_user_args():
+		hasArgs = true
+		curArgName = argument.lstrip("-").split("=")[0]
+		curArgData = argument.split("=")[1]
+		match curArgName:
+			"arnold":
+				Main.arnoldInit = int(curArgData)
+			"food":
+				Main.foodInit = int(curArgData)
+			"platform-size", "p-size":
+				Main.platformSize = float(curArgData)
+			"player-hp", "hp":
+				Player.hpInit = int(curArgData)
+	
+	if hasArgs:
+		get_node("PlayButton").emit_signal("pressed")
 
 
 func _start_game():
@@ -43,4 +66,7 @@ func _on_visible_changed():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	if firstRun:
+		firstRun = false
+		handleConsoleArgs()
+

@@ -50,6 +50,7 @@ label_settings = SubResource("LabelSettings_0wwlf")
 vertical_alignment = 1
 
 [node name="ArnoldSlider" type="HSlider" parent="Background"]
+layout_mode = 0
 offset_left = 412.0
 offset_top = 197.0
 offset_right = 715.0
@@ -58,6 +59,7 @@ min_value = 1.0
 value = 10.0
 
 [node name="ArnoldLabel" type="Label" parent="Background"]
+layout_mode = 0
 offset_left = 114.0
 offset_top = 210.0
 offset_right = 370.0
@@ -67,6 +69,7 @@ label_settings = SubResource("LabelSettings_0wwlf")
 vertical_alignment = 1
 
 [node name="FoodSlider" type="HSlider" parent="Background"]
+layout_mode = 0
 offset_left = 412.0
 offset_top = 264.0
 offset_right = 715.0
@@ -76,6 +79,7 @@ max_value = 200.0
 value = 20.0
 
 [node name="FoodLabel" type="Label" parent="Background"]
+layout_mode = 0
 offset_left = 115.0
 offset_top = 276.0
 offset_right = 366.0
@@ -85,6 +89,7 @@ label_settings = SubResource("LabelSettings_0wwlf")
 vertical_alignment = 1
 
 [node name="PlayerHPSlider" type="HSlider" parent="Background"]
+layout_mode = 0
 offset_left = 412.0
 offset_top = 328.0
 offset_right = 715.0
@@ -94,6 +99,7 @@ max_value = 20.0
 value = 5.0
 
 [node name="PlayerHPLabel" type="Label" parent="Background"]
+layout_mode = 0
 offset_left = 115.0
 offset_top = 340.0
 offset_right = 437.0
