@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cyj5p5px8as48"]
 
 [ext_resource type="AudioStream" uid="uid://c3oeoo038xd2f" path="res://sound/t1_excellent.wav" id="1_647md"]
-[ext_resource type="Script" path="res://bullet.gd" id="1_fyw5o"]
+[ext_resource type="Script" path="res://scenes/bullet.gd" id="1_fyw5o"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_28844"]
 

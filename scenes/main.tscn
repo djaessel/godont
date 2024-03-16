@@ -1,19 +1,19 @@
 [gd_scene load_steps=13 format=3 uid="uid://bht7s8su4eybd"]
 
-[ext_resource type="Script" path="res://Ground.gd" id="1_kq3cc"]
-[ext_resource type="PackedScene" uid="uid://biktulgqrrh4f" path="res://player.tscn" id="2_dsjst"]
-[ext_resource type="Texture2D" uid="uid://dh5nsbeoqy13i" path="res://img/wall.jpg" id="3_1m22f"]
-[ext_resource type="Script" path="res://MyCam.gd" id="3_plwtd"]
-[ext_resource type="AudioStream" uid="uid://ci2pcvnbs75he" path="res://backgroundMusic1.mp3" id="4_qi5pc"]
-[ext_resource type="AudioStream" uid="uid://3cgkefd683fo" path="res://sound/t1_be_back.wav" id="5_6j6iu"]
-[ext_resource type="AudioStream" uid="uid://d0p6v784b8qc" path="res://sound/t3_destiny.wav" id="6_gak0y"]
-[ext_resource type="AudioStream" uid="uid://bixl0g738kvjs" path="res://sound/t3_terminated.wav" id="7_rlw8f"]
+[ext_resource type="Script" path="res://scenes/Ground.gd" id="1_2hyky"]
+[ext_resource type="AudioStream" uid="uid://3cgkefd683fo" path="res://sound/t1_be_back.wav" id="2_6yhkg"]
+[ext_resource type="Texture2D" uid="uid://dh5nsbeoqy13i" path="res://img/wall.jpg" id="3_wyq6f"]
+[ext_resource type="PackedScene" uid="uid://biktulgqrrh4f" path="res://scenes/player.tscn" id="4_tsnvk"]
+[ext_resource type="Script" path="res://scenes/MyCam.gd" id="5_yfmup"]
+[ext_resource type="AudioStream" uid="uid://ci2pcvnbs75he" path="res://music/backgroundMusic1.mp3" id="6_nif80"]
+[ext_resource type="AudioStream" uid="uid://d0p6v784b8qc" path="res://sound/t3_destiny.wav" id="7_bjxy3"]
+[ext_resource type="AudioStream" uid="uid://bixl0g738kvjs" path="res://sound/t3_terminated.wav" id="8_jn3fy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ylrk6"]
 size = Vector3(60, 2, 60)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kv8e"]
-albedo_texture = ExtResource("3_1m22f")
+albedo_texture = ExtResource("3_wyq6f")
 
 [sub_resource type="BoxMesh" id="BoxMesh_iuy3a"]
 material = SubResource("StandardMaterial3D_3kv8e")
@@ -25,10 +25,10 @@ size = Vector3(60, 2, 60)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-script = ExtResource("1_kq3cc")
+script = ExtResource("1_2hyky")
 
 [node name="oneDied" type="AudioStreamPlayer3D" parent="Ground"]
-stream = ExtResource("5_6j6iu")
+stream = ExtResource("2_6yhkg")
 volume_db = -1.0
 pitch_scale = 0.79
 emission_angle_enabled = true
@@ -43,11 +43,11 @@ mesh = SubResource("BoxMesh_iuy3a")
 transform = Transform3D(1, 0, 0, 0, -0.0157946, 0.999875, 0, -0.999875, -0.0157946, 0, 16.4687, 0)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("2_dsjst")]
+[node name="Player" parent="." instance=ExtResource("4_tsnvk")]
 
 [node name="MyCam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.848048, 0.529919, 0, -0.529919, 0.848048, 0, 8, 42)
-script = ExtResource("3_plwtd")
+script = ExtResource("5_yfmup")
 
 [node name="hp_text" type="Label3D" parent="MyCam"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.55724, -13.6944)
@@ -60,16 +60,16 @@ pixel_size = 0.05
 modulate = Color(0.0823529, 0.647059, 0.439216, 1)
 
 [node name="backgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_qi5pc")
+stream = ExtResource("6_nif80")
 volume_db = -1.0
 pitch_scale = 0.48
 autoplay = true
 
 [node name="won" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("6_gak0y")
+stream = ExtResource("7_bjxy3")
 
 [node name="lost" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("7_rlw8f")
+stream = ExtResource("8_jn3fy")
 volume_db = 1.0
 pitch_scale = 0.7
 

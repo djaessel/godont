@@ -22,7 +22,7 @@ func _ready():
 
 
 func spawnInitialFood():
-	var fx = preload("res://food1.tscn")
+	var fx = preload("res://scenes/food1.tscn")
 	for n in 20:
 		var f = fx.instantiate()
 		f.position.x = randi_range(-20, 20)
@@ -32,7 +32,7 @@ func spawnInitialFood():
 
 
 func spawnInitialMobs():
-	var mobx = preload("res://moby.tscn")
+	var mobx = preload("res://scenes/moby.tscn")
 	for n in 10:
 		var m = mobx.instantiate()
 		m.position.x = randi_range(-20, 20) # n * 2.5 - 10
@@ -73,7 +73,7 @@ func saveFinalState():
 		file.store_line("save version 1")
 		file.close()
 	
-	var filex = FileAccess.open("user://saveGames/save0", FileAccess.WRITE | FileAccess.READ)
+	var filex = FileAccess.open("user://saveGames/save0", FileAccess.READ_WRITE)
 	filex.seek_end()
 	filex.store_line(JSON.stringify(saveData))
 	filex.close()

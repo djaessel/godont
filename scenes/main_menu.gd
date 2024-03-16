@@ -1,6 +1,6 @@
 extends TextureRect
 
-var mainGame = preload("res://main.tscn")
+var mainGame = preload("res://scenes/main.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
