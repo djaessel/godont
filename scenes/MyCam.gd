@@ -13,9 +13,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	var player = get_parent().get_node("Player")
-	var ground = get_parent().get_node("Ground")
 	var hpText = self.get_node("hp_text")
-	if not player.dead and not ground.finish:
+	if not player.dead and not get_parent().finish:
 		position.x = player.position.x
 		position.y = player.position.y + differ * 2
 		hpText.text = "HP: " + str(player.hp)

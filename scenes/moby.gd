@@ -63,7 +63,7 @@ func handleBullet():
 		spawnNewX.position.z = position.z + 0.5
 		var velo = Vector3.ZERO
 		#Unit vector pointing at the target position from the characters position
-		var player = get_parent().get_parent().get_node("Player")
+		var player = get_parent().get_node("Player")
 		var direction = global_position.direction_to(player.global_position)
 		velo = direction * speed
 		velo.y += 1

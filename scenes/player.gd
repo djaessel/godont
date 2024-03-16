@@ -75,7 +75,7 @@ func hit():
 
 
 func _physics_process(delta):
-	if not get_parent().get_node("Ground").finish:
+	if not get_parent().finish:
 		#handleEating()
 		handleHP()
 		movement(delta)
