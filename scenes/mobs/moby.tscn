@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b7kw4jl2lclgl"]
 
-[ext_resource type="Script" path="res://scenes/moby.gd" id="1_v6uqt"]
+[ext_resource type="Script" path="res://scenes/mobs/moby.gd" id="1_v6uqt"]
 [ext_resource type="Texture2D" uid="uid://bds0xnrvdoqrt" path="res://img/arnold-636400426763362208-1576203277.png" id="1_ybdqy"]
 [ext_resource type="Texture2D" uid="uid://doo5jjb08gtos" path="res://img/arnold-schwarzenegger-face-png-graphic-library-download-arnold-schwarzenegger-face-11563008984bsi42khina-1628091131.png" id="2_xla3l"]
 [ext_resource type="AudioStream" uid="uid://8pg4ac1pucx2" path="res://sound/t2_no_problemo.wav" id="4_o0liw"]

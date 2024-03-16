@@ -1,7 +1,7 @@
 extends TextureRect
 
-var mainGame = preload("res://scenes/main.tscn")
-var settingsMenu = preload("res://scenes/settings.tscn")
+var mainGame = preload("res://scenes/levels/main.tscn")
+var settingsMenu = preload("res://scenes/menus/settings.tscn")
 var settingsAdded = false
 var firstRun = true
 

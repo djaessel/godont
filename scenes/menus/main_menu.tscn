@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cnhpwps40l1tf"]
 
 [ext_resource type="Texture2D" uid="uid://dh5nsbeoqy13i" path="res://img/wall.jpg" id="1_a414v"]
-[ext_resource type="Script" path="res://scenes/main_menu.gd" id="2_cfsdc"]
+[ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="2_cfsdc"]
 [ext_resource type="AudioStream" uid="uid://ci2pcvnbs75he" path="res://music/backgroundMusic1.mp3" id="3_hn54y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kuech"]

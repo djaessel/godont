@@ -33,7 +33,7 @@ func resetGameData():
 
 
 func spawnInitialFood():
-	var fx = preload("res://scenes/food1.tscn")
+	var fx = preload("res://scenes/food/food1.tscn")
 	var ground = get_node("Ground")
 	for n in Main.foodInit:
 		var f = fx.instantiate()
@@ -44,7 +44,7 @@ func spawnInitialFood():
 
 
 func spawnInitialMobs():
-	var mobx = preload("res://scenes/moby.tscn")
+	var mobx = preload("res://scenes/mobs/moby.tscn")
 	var ground = get_node("Ground")
 	for n in Main.arnoldInit:
 		var m = mobx.instantiate()

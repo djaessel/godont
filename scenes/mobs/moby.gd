@@ -36,7 +36,7 @@ func handleEating():
 		get_node("ArnoldAnim").play()
 		get_node("NoProblemo").play()
 		topText.text = "Es isst"
-		var spawnNew = preload("res://scenes/moby.tscn")
+		var spawnNew = preload("res://scenes/mobs/moby.tscn")
 		var spawnNewX = spawnNew.instantiate()
 		spawnNewX.position.x = position.x + 1
 		spawnNewX.position.z = position.z + 1
@@ -57,7 +57,7 @@ func handleEating():
 func handleBullet():
 	if bullet:
 		bullet = false
-		var spawnNew = preload("res://scenes/bullet.tscn")
+		var spawnNew = preload("res://scenes/missiles/bullet.tscn")
 		var spawnNewX = spawnNew.instantiate()
 		spawnNewX.position.x = position.x + 0.5
 		spawnNewX.position.z = position.z + 0.5

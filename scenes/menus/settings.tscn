@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b1l8kbh83r0ne"]
 
 [ext_resource type="Texture2D" uid="uid://dh5nsbeoqy13i" path="res://img/wall.jpg" id="1_0cqn2"]
-[ext_resource type="Script" path="res://scenes/settings.gd" id="2_2fbj6"]
+[ext_resource type="Script" path="res://scenes/menus/settings.gd" id="2_2fbj6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0wwlf"]
 font_size = 26
