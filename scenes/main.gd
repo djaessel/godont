@@ -11,33 +11,46 @@ var won = false
 var runsCount = 0
 var firstCallFinish = true
 
+# settings for player
+static var platformSize = 60.0 # meters
+static var arnoldInit = 10
+static var foodInit = 15
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# reset ground mesh
-	get_node("Ground/SuperMesh").get_active_material(0).albedo_color = Color(1.0, 1.0, 1.0)
+	resetGameData()
 	# Spawn initial stuff
 	spawnInitialFood()
 	spawnInitialMobs()
 
 
+func resetGameData():
+	var ground = get_node("Ground")
+	ground.get_node("SuperMesh").get_active_material(0).albedo_color = Color(1.0, 1.0, 1.0)
+	ground.scale.x = Main.platformSize / 60.0
+	ground.scale.z = Main.platformSize / 60.0 # so they are still chained
+
+
 func spawnInitialFood():
 	var fx = preload("res://scenes/food1.tscn")
-	for n in 20:
+	var ground = get_node("Ground")
+	for n in Main.foodInit:
 		var f = fx.instantiate()
-		f.position.x = randi_range(-20, 20)
+		f.position.x = randi_range(-20 * ground.scale.x, 20 * ground.scale.x)
 		f.position.y = 2
-		f.position.z += randi_range(-20, 20)
+		f.position.z += randi_range(-20 * ground.scale.x, 20 * ground.scale.x)
 		add_child(f)
 
 
 func spawnInitialMobs():
 	var mobx = preload("res://scenes/moby.tscn")
-	for n in 10:
+	var ground = get_node("Ground")
+	for n in Main.arnoldInit:
 		var m = mobx.instantiate()
-		m.position.x = randi_range(-20, 20) # n * 2.5 - 10
+		m.position.x = randi_range(-20 * ground.scale.x, 20 * ground.scale.x) # n * 2.5 - 10
 		m.position.y = n
-		m.position.z += randi_range(5, 15)
+		m.position.z += randi_range(5 * ground.scale.z, 15 * ground.scale.z)
 		add_child(m)
 
 
@@ -81,7 +94,7 @@ func saveFinalState():
 
 func doFinshingCode():
 	if force_finish:
-		get_parent().queue_free()
+		queue_free()
 	elif firstCallFinish:
 		firstCallFinish = false
 		

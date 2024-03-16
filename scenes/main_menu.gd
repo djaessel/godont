@@ -1,6 +1,8 @@
 extends TextureRect
 
 var mainGame = preload("res://scenes/main.tscn")
+var settingsMenu = preload("res://scenes/settings.tscn")
+var settingsAdded = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +20,12 @@ func _start_game():
 
 
 func _open_settings():
-	pass
+	get_parent().hide()
+	if not settingsAdded:
+		settingsAdded = true
+		get_tree().root.add_child(settingsMenu.instantiate())
+	else:
+		get_tree().root.get_node("Settings").show()
 
 
 func _exit_game():

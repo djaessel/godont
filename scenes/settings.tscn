@@ -1,0 +1,103 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1l8kbh83r0ne"]
+
+[ext_resource type="Texture2D" uid="uid://dh5nsbeoqy13i" path="res://img/wall.jpg" id="1_0cqn2"]
+[ext_resource type="Script" path="res://scenes/settings.gd" id="2_2fbj6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0wwlf"]
+font_size = 26
+font_color = Color(0.215686, 0.0627451, 0.0235294, 1)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_0cqn2")
+script = ExtResource("2_2fbj6")
+
+[node name="BackButton" type="Button" parent="Background"]
+layout_mode = 0
+offset_right = 86.0
+offset_bottom = 76.0
+text = "< Back"
+
+[node name="PlatformSizeSlider" type="HSlider" parent="Background"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 132.0
+offset_right = 715.0
+offset_bottom = 203.0
+min_value = 30.0
+max_value = 200.0
+step = 2.0
+value = 60.0
+
+[node name="PlatformSizeLabel" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 146.0
+offset_right = 380.0
+offset_bottom = 189.0
+text = "Platform Size: 60"
+label_settings = SubResource("LabelSettings_0wwlf")
+vertical_alignment = 1
+
+[node name="ArnoldSlider" type="HSlider" parent="Background"]
+offset_left = 412.0
+offset_top = 197.0
+offset_right = 715.0
+offset_bottom = 268.0
+min_value = 1.0
+value = 10.0
+
+[node name="ArnoldLabel" type="Label" parent="Background"]
+offset_left = 114.0
+offset_top = 210.0
+offset_right = 370.0
+offset_bottom = 253.0
+text = "Arnold Amount: 10"
+label_settings = SubResource("LabelSettings_0wwlf")
+vertical_alignment = 1
+
+[node name="FoodSlider" type="HSlider" parent="Background"]
+offset_left = 412.0
+offset_top = 264.0
+offset_right = 715.0
+offset_bottom = 335.0
+min_value = 1.0
+max_value = 200.0
+value = 20.0
+
+[node name="FoodLabel" type="Label" parent="Background"]
+offset_left = 115.0
+offset_top = 276.0
+offset_right = 366.0
+offset_bottom = 319.0
+text = "Food Amount: 20"
+label_settings = SubResource("LabelSettings_0wwlf")
+vertical_alignment = 1
+
+[node name="PlayerHPSlider" type="HSlider" parent="Background"]
+offset_left = 412.0
+offset_top = 328.0
+offset_right = 715.0
+offset_bottom = 399.0
+min_value = 1.0
+max_value = 20.0
+value = 5.0
+
+[node name="PlayerHPLabel" type="Label" parent="Background"]
+offset_left = 115.0
+offset_top = 340.0
+offset_right = 437.0
+offset_bottom = 383.0
+text = "Player HP: 5"
+label_settings = SubResource("LabelSettings_0wwlf")
+vertical_alignment = 1

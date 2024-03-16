@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 # How fast the player moves in meters per second.
 @export var speed = 5
@@ -8,6 +9,7 @@ extends CharacterBody3D
 @export var dead = false
 # player health points
 @export var hp = 5
+static var hpInit = 5
 
 var target_velocity = Vector3.ZERO
 
@@ -15,6 +17,10 @@ var maxY = 0.25
 var jumping = false
 var eating = false
 var eatingTimeout = 1000000
+
+
+func _ready():
+	self.hp = Player.hpInit
 
 
 func movement(delta):
