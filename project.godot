@@ -13,6 +13,7 @@ config_version=5
 config/name="Godont"
 run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0.258824, 0.258824, 0.258824, 1)
 config/icon="res://icon.svg"
 
 [display]
