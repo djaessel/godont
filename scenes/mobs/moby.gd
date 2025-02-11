@@ -133,4 +133,3 @@ func _physics_process(delta):
 		handleBullet()
 		handleVelocity(direction, delta)
 		handleMovement() # Moving the Character
-

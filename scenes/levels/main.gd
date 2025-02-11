@@ -210,4 +210,3 @@ func _process(_delta):
 		force_finish = true
 		get_tree().root.get_node("MainMenu").show()
 	
-

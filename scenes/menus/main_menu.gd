@@ -69,4 +69,3 @@ func _process(_delta):
 	if firstRun:
 		firstRun = false
 		handleConsoleArgs()
-

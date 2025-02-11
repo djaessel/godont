@@ -85,4 +85,3 @@ func _physics_process(delta):
 		#handleEating()
 		handleHP()
 		movement(delta)
-
